@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Experiment Dashboard</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<div class=container  id="bigdiv">	
+		<div id="settingsPanel" class=fixed>
+			<h2>Settings</h2>
+			<fieldset>
+				
+				<div class=container>
+					<div id="labels" class=fixed>
+						<div>Initial counter:</div>
+						<div>Ending counter:</div>
+						<div>Collection:</div>
+						<div>Device:</div>	
+						<div>Sorting:</div>	
+						<div>Workload:</div>
+						<div>nThreads:</div>
+					</div>
+					
+					<div id="flex" class=flex-item>
+					
+						<ul class="form">
+							<li>	
+								<input id="inpInitialCounter" class="value" type="number" min="0", value="1" ></input>
+							</li>
+							<li>
+								<input id="inpEndingCounter" class="value" type="number" min="0", value="30"></input>
+							</li>
+							<li>
+								<div class=container id="containerExp">
+								<select id="show" class="form-control" name="show_text_area" onchange="change(this)">
+									<option value="list"> List </option>
+									<option value="map"> Map </option>
+									<option value="set"> Set </option>
+								</select>
+								<select id="inpExperimentName">
+									<option class="list" value="al">ArrayList</option>
+									<option class="list" value="ll">LinkedList</option>
+									<option class="list" value="fl">FastList</option>
+									<option class="list" value="tl">TreeList</option>
+									<option class="list" value="ncll">NodeCachingLinkedList</option>
+									<option class="list" value="cll">CursorableLinkedList</option>
+									<option class="list" value="vec">Vector</option>
+									<option class="list" value="cwal">CopyWrite ArrayList</option>
+									<option class="list" value="sl">Sync List</option>
+									<option class="list" value="sal">Sync ArrayList</option>
+									<option class="list" value="sfl">Sync FastList</option>
+									
+									<option class="map" value="hm">HashMap</option>
+									<option class="map" value="lhm">LinkedHashMap</option>
+									<option class="map" value="tm">TreeMap</option>
+									<option class="map" value="whm">WeakHashMap</option>
+									<option class="map" value="um">UnifedMap</option>
+									<option class="map" value="hsdm">HashedMap</option>
+									<option class="map" value="ht">HashTable</option>
+									<option class="map" value="chm">Concurrent HashMap</option>
+									<option class="map" value="cslm">Concurrent SkipListMap</option>
+									<option class="map" value="shm">Sync HashMap</option>
+									<option class="map" value="slhm">Sync LinkedHashMap</option>
+									<option class="map" value="stm">Sync TreeMap</option>
+									<option class="map" value="swhm">Sync WeakHashMap</option>
+									<option class="map" value="chmv8">Concurrent HashMapV8</option>
+									<option class="map" value="chmec">Concurrent HashMapEC</option>
+									<option class="map" value="sum">Sync UnifiedMap</option>
+									<option class="map" value="sbm">StaticBucketMap</option>
+
+									<option class="set" value="hs">HashSet</option>
+									<option class="set" value="lhs">LinkedHashSet</option>
+									<option class="set" value="ts">TreeSet</option>
+									<option class="set" value="us">UnifiedSet</option>
+									<option class="set" value="tss">TreeSortedSet</option>
+									<option class="set" value="shs">Sync HashSet</option>
+									<option class="set" value="slhs">Sync LinkedHashSet</option>
+									<option class="set" value="sts">Sync TreeSet</option>
+									<option class="set" value="cwas">CopyWrite ArraySet</option>
+									<option class="set" value="csls">Concurrent SkipListSet</option>
+									<option class="set" value="schm">SetConcurrent HashMap</option>				
+									<option class="set" value="schmv8">SetConcurrent HashMapV8</option>	
+									<option class="set" value="sus">Sync UnifiedSet</option>	
+									<option class="set" value="stss">Sync TreeSortedSet</option>	
+								</select>
+							</div>
+							</li>
+							<li>
+								<input id="inpDevice" class="value" type="text", value="S8"></input>
+							</li>
+							<li>
+								<select id="inpSort">
+								<option value="Disabled">Disabled</option>
+								<option value="Enabled">Enabled</option>
+								</select>
+							</li>
+							<li>
+								<input id="inpWorkload" class="value" type="number", value=""></input>
+							</li>
+							<li>
+								<input id="inpNThreads" class="value" type="number", value=""></input>
+							</li>
+						</ul>
+					</div>
+
+				<div id="divbutton">
+					<button id="changeSettingsButton" onclick="changeSettings()">Change experiment settings</button>
+				</div>
+			</fieldset>
+		</div>
+		<div id="dashboard" class="flex-item">
+			<h2>Dashboard</h2>
+
+			<div id="containerlabels2" class=container>
+				<div id="labels2" class=fixed>
+					<div>Current counter:</div>
+					<div>Until:</div>
+					<div>Collection:</div>
+					<div>Language:</div>
+					<div>Device:</div>
+					<div>Sorting:</div>
+					<div>Experiment status:</div>
+					<div>Workload:</div>
+					<div>Number of threads:</div>
+				</div>
+				<div class=flex-item id="anotherflex">
+					<ul id="another" class="info">
+						<li>
+							<div id="currentCounter" class="value">N/A</div>
+						</li>
+						<li>
+							<div id="counterEnd" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="currentTest" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="language" class="value">Java</div>
+						</li>
+						<li>					
+							<div id="device" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="sort" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="isExperimentStopped" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="viewWorkload" class="value">N/A</div>
+						</li>
+						<li>					
+							<div id="viewNThreads" class="value">N/A</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class=container>
+			<div id="actionsPanel" class=fixed>
+				<h2>Actions</h2>
+				<div class="container">
+				<button onclick="startExperiment()">Start experiment</button>
+				<button onclick="stopExperiment()">Stop experiment</button>
+				<button onclick="listDevices()">List devices</button>
+				<button onclick="showDeviceIpAddress()">Show device IP address</button>
+				<button onclick="wakeUpDevice()">Wake up device</button>
+				<button onclick="fullRun()">Run all the collections starting from the current one</button>
+				<button onclick="installApkBtnClicked()">Pick APK to install</button>
+				</div>
+			</div>
+			<div id="log" class="flex-item">
+				<h2>Log</h2>
+				<div id="logbox">
+					<ul id="logList">
+					</ul>
+				</div>
+			</div>
+			<input type="file" onchange="installApk()" id="fileInp" style="display: none"/>
+	</div>	
+
+</body>
+
+<script>
+var refreshTimeout=1000;
+function installApkBtnClicked(){
+	document.getElementById("fileInp").click();
+}
+function installApk(){
+	let filePath = encodeURI(document.getElementById("fileInp").value);
+	ajaxRequest("GET",`/install_apk?file_path=${filePath}`,addResponseToLog);
+}
+function addToLog(text){
+	var newItem = document.createElement("li");
+	if(text.includes("Error")){
+		newItem.className = "error";
+	}
+	var text = document.createTextNode(text);
+	newItem.appendChild(text);
+	document.getElementById("logList").appendChild(newItem);
+	var logbox = document.getElementById("logbox");
+	logbox.scrollTop=logbox.scrollHeight;
+}
+function addResponseToLog(){
+	if (this.readyState == 4 && this.status == 200) {
+		addToLog(this.responseText);
+	}
+}
+function ajaxRequest(method,url,callbackMethod){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = callbackMethod;
+  	xhttp.open(method, url, true);
+  	xhttp.send();
+}
+function enableDisableSettingsButton(enable){
+	document.getElementById("changeSettingsButton").disabled=enable;
+}
+function onRefreshPage() {
+	if (this.readyState == 4 && this.status == 200) {
+    	var response = JSON.parse(this.responseText);
+    	document.getElementById("currentCounter").innerHTML=response.counter.current;
+    	document.getElementById("counterEnd").innerHTML=response.counter.until;
+    	document.getElementById("currentTest").innerHTML=response.currentTest.name;
+    	document.getElementById("sort").innerHTML=response.sort;
+    	document.getElementById("isExperimentStopped").innerHTML=response.stop?"Stopped":"Running";
+    	//document.getElementById("language").innerHTML=response.language;
+    	document.getElementById("device").innerHTML=response.device;
+    	document.getElementById("viewWorkload").innerHTML=response.workload?response.workload:"N/A";
+    	document.getElementById("viewNThreads").innerHTML=response.nThreads?response.nThreads:"N/A";
+    	enableDisableSettingsButton(!response.stop);
+    } else {
+    	if(this.readyState == undefined)
+    		addToLog("Error on data refresh! Info:"+this.readyState+" "+this.status);
+    }
+}
+function refreshPage(){
+  	ajaxRequest("GET","/info",onRefreshPage);
+}
+function changeSettings(){
+	var initialCounter = document.getElementById("inpInitialCounter").value;
+	var endingCounter = document.getElementById("inpEndingCounter").value;
+	var experimentName = document.getElementById("inpExperimentName").value;
+	var experimentFullName= document.getElementById("inpExperimentName").options[document.getElementById("inpExperimentName").selectedIndex].text
+	var device = document.getElementById("inpDevice").value;
+	var sort = document.getElementById("inpSort").value;
+	var language = "Java";
+	var urlParameters = "dummy=dummy";
+	var workload = document.getElementById("inpWorkload").value;
+	var nThreads = document.getElementById("inpNThreads").value;
+
+	if( (initialCounter != undefined) && (initialCounter != "") )
+		urlParameters+="&counter="+initialCounter;
+
+	if( (endingCounter != undefined) && (endingCounter != "") )
+		urlParameters+="&until="+endingCounter;
+
+	if( (experimentName != undefined) && (experimentName != "") )
+		urlParameters+="&choosenTest="+experimentName;
+
+	if( (experimentFullName != undefined) && (experimentFullName != "") )
+		urlParameters+="&fullName="+experimentFullName;
+
+	if( (device != undefined) && (device != "") )
+		urlParameters+="&device="+device;
+
+	if( (language != undefined) && (language != "") )
+		urlParameters+="&language="+language;
+
+	if( (sort != undefined) && (sort != "") )
+		urlParameters+="&sort="+sort;
+
+	if(workload && (workload !== "")){
+		urlParameters+="&workload="+workload;
+	}
+
+	if(nThreads && (nThreads !== "")){
+		urlParameters+="&nThreads="+nThreads;
+	}
+
+  	ajaxRequest("GET","/set?"+urlParameters,addResponseToLog);
+}
+
+function startExperiment(){
+  	ajaxRequest("GET","/start",addResponseToLog);
+}
+function fullRun(){
+  	ajaxRequest("GET","/full_run",addResponseToLog);
+}
+function stopExperiment(){
+	ajaxRequest("GET","/stop",addResponseToLog);
+}
+function listDevices(){
+	ajaxRequest("GET","/list_devices",addResponseToLog);
+}
+function showDeviceIpAddress(){
+	ajaxRequest("GET","/show_device_ip_address",addResponseToLog);
+}
+function wakeUpDevice(){
+	ajaxRequest("GET","/wake_up_device",addResponseToLog);	
+}
+
+setInterval(refreshPage,refreshTimeout);
+
+
+function change(obj) {
+
+
+    var selectBox = obj;
+    var selected = selectBox.options[selectBox.selectedIndex].value;
+    var groupSet = document.getElementsByClassName("set");
+   	var groupMap = document.getElementsByClassName("map");
+   	var groupList = document.getElementsByClassName("list");
+   	
+   	var group;
+   	var otherGroups;
+
+    var i;
+    if(selected === 'set'){
+    	group = document.getElementsByClassName("set");
+    	otherGroups = document.querySelectorAll("option.map,option.list");
+    }
+    else if(selected === 'list'){
+		group = document.getElementsByClassName("list");
+    	otherGroups = document.querySelectorAll("option.map,option.set");
+    }
+	else if(selected === 'map'){
+		group = document.getElementsByClassName("map");
+    	otherGroups = document.querySelectorAll("option.list,option.set");
+    }
+
+	for (i = 0; i < group.length; i++) {
+		group[i].style.display = "block";
+	}
+	for (i = 0; i < otherGroups.length; i++) {
+		otherGroups[i].style.display = "none";
+	}
+	var reset = document.getElementById("inpExperimentName");
+
+	reset.selectedIndex = group[0].index;
+
+}
+
+</script>
+
+</html>
